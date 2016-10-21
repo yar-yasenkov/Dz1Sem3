@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <string>
 #include <iostream>
+template <typename T>
 class allocator
 {
 protected:
