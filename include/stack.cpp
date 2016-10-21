@@ -59,7 +59,7 @@ auto newcopy( const T * tmp, size_t size, size_t count) -> T* /*strong*/
 {
       T * buff = new T[size];
     try {
-    copy(tmp, tmp + count, buff);}
+    std::copy(tmp, tmp + count, buff);}
     catch(...){
     delete[] buff;
     throw; }
