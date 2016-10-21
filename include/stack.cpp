@@ -53,7 +53,7 @@ std::swap(count_, other.count_);
 };
 
 
-using namespace std;
+
 template<typename T>
 auto newcopy( const T * tmp, size_t size, size_t count) -> T* /*strong*/
 {
@@ -79,6 +79,7 @@ public:
     void pop();
     auto top() const -> const T&;
     bool empty_() const;
+    void grow();
     ~stack();
     
     
