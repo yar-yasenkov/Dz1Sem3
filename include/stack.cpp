@@ -96,7 +96,7 @@ size_t  stack<T>::count() const { return allocator<T>::count_; }; /*noexcept*/
 template <typename T>
 void stack<T>::push(T const &item) /*noexcept*/
 {
-    if (allocator<T>::size_ <= allocator<T>::count_) { grow(); }
+    if (allocator<T>::size_ == allocator<T>::count_) { grow(); }
     
 construct(allocator<T>::ptr_+allocator<T>::count_,item);
 ++allocator<T>::count_;
@@ -121,14 +121,13 @@ auto stack<T>::top() const -> const T& { /*strong*/
 }
 template <typename T>
 void stack<T>::grow() { /*strong*/
-    size_t new_array_size_=0;
-    if (allocator<T>::size_ == allocator<T>::count_) new_array_size_= allocator<T>::size*2 + (allocator<T>::size==0);
+    size_t new_array_size_= allocator<T>::size*2 + (allocator<T>::size==0);
     T *new_array_ = newcopy(allocator<T>::ptr_,new_array_size_,allocator<T>::count_);
      if (!empty_()) {
         delete[] allocator<T>::ptr_;
+     }
 	allocator<T>::ptr_ = new_array_;
     	allocator<T>::size_ = new_array_size_;
-        }
       
     
 }
